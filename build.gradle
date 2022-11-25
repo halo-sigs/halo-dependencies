@@ -38,7 +38,7 @@ javaPlatform {
 }
 
 ext {
-    springBoot = '3.0.0-RC2'
+    springBoot = '3.0.0'
     commonsLang3 = "3.12.0"
     base62 = "0.1.3"
     pf4j = '3.7.0'
@@ -50,7 +50,7 @@ ext {
     ikAnalyzer = '9.0.0'
     lucene = '9.4.1'
     openapiSchemaValidator = '1.0.7'
-    openapiWebfluxUi = '2.0.0-RC2'
+    springDocOpenAPI = '2.0.0'
 }
 
 dependencies {
@@ -58,7 +58,7 @@ dependencies {
     api platform("org.springframework.boot:spring-boot-dependencies:$springBoot")
 
     constraints {
-        api "org.springdoc:springdoc-openapi-starter-webflux-ui:$openapiWebfluxUi"
+        api "org.springdoc:springdoc-openapi-starter-webflux-ui:$springDocOpenAPI"
         api "org.openapi4j:openapi-schema-validator:$openapiSchemaValidator"
 
         // Apache Lucene
