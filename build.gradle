@@ -57,6 +57,8 @@ dependencies {
     // Import other BOMs
     api platform("org.springframework.boot:spring-boot-dependencies:$springBoot")
 
+    apiElements("org.springframework.boot:spring-boot-starter-webflux")
+
     constraints {
         api "org.springdoc:springdoc-openapi-starter-webflux-ui:$springDocOpenAPI"
         api "org.openapi4j:openapi-schema-validator:$openapiSchemaValidator"
@@ -80,5 +82,25 @@ dependencies {
         // See https://github.com/spring-projects/spring-data-relational/commit/ee6c2c89b5c433748b22a79cf40dc8e01142caa3
         // for more.
         runtime "com.github.jasync-sql:jasync-r2dbc-mysql:$jasyncR2dbcMysql"
+    }
+
+    // all sub-modules are java normal modules, using root project as bom
+    subprojects {
+        apply plugin: 'java'
+
+        sourceCompatibility = JavaVersion.VERSION_17
+
+        // common dependencies for all modules
+        dependencies {
+            // use versions declared in the root module
+            implementation platform(project(':'))
+
+            implementation 'org.springframework.boot:spring-boot-starter-webflux'
+        }
+
+        // use only direct dependencies in the generated pom, removing BOM
+        pomGeneration {
+            removeDependencyManagement()
+        }
     }
 }
