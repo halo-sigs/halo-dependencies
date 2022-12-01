@@ -7,7 +7,6 @@ plugins {
 }
 
 group 'run.halo.dependencies'
-version '1.0.0-SNAPSHOT'
 description = "Halo Dependencies"
 
 repositories {
@@ -21,7 +20,7 @@ publishing {
             if (version.endsWith('-SNAPSHOT')) {
                 url = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
             } else {
-                url = mavenCentral().url
+                url = uri("https://s01.oss.sonatype.org/content/repositories/releases/")
             }
             credentials {
                 username = project.findProperty("ossr.user") ?: System.getenv("OSSR_USERNAME")
@@ -54,6 +53,7 @@ ext {
     lucene = '9.4.1'
     openapiSchemaValidator = '1.0.7'
     springDocOpenAPI = '2.0.0'
+    lombok = '1.18.22'
 }
 
 dependencies {
@@ -119,7 +119,7 @@ dependencies {
         api "org.jsoup:jsoup:$jsoup"
         api "io.github.java-diff-utils:java-diff-utils:$javaDiffUtils"
         api "com.github.java-json-tools:json-patch:$jsonPatch"
-
+        api "org.projectlombok:lombok:$lombok"
         runtime "com.github.jasync-sql:jasync-r2dbc-mysql:$jasyncR2dbcMysql"
     }
 }
